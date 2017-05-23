@@ -1,0 +1,419 @@
+﻿        #region Receipts
+
+        public bool Receipt_Save(BLL.Receipt P)
+        {
+            try
+            {
+                P.CompanyId = Caller.CompanyId;
+
+                DAL.Receipt d = DB.Receipts.Where(x => x.Id == P.Id).FirstOrDefault();
+
+                if (d == null)
+                {
+
+                    d = new DAL.Receipt();
+                    DB.Receipts.Add(d);
+
+                    P.toCopy<DAL.Receipt>(d);
+                    if (P.PayMode == "Cash")
+                    {
+                        DAL.ReceiptCash pCash = new DAL.ReceiptCash();
+                        d.ReceiptCashes.Add(pCash);
+                    }
+                    else if (P.PayMode == "Cheque")
+                    {
+                        DAL.ReceiptCheque pCheque = new DAL.ReceiptCheque();
+                        P.PCheque.toCopy<DAL.ReceiptCheque>(pCheque);
+                        d.ReceiptCheques.Add(pCheque);
+                    }
+                    else if (P.PayMode == "Online")
+                    {
+                        DAL.ReceiptOnline pOnline = new DAL.ReceiptOnline();
+                        P.POnline.toCopy<DAL.ReceiptOnline>(pOnline);
+                        d.ReceiptOnlines.Add(pOnline);
+                    }
+                    else if (P.PayMode == "TT")
+                    {
+                        DAL.ReceiptTT pTT = new DAL.ReceiptTT();
+                        P.PTT.toCopy<DAL.ReceiptTT>(pTT);
+                        d.ReceiptTTs.Add(pTT);
+                    }
+
+                    if (P.PayTo == "Customer")
+                    {
+                        foreach(var pc in P.SRPendingList.Where(x=> x.PayAmount != 0).ToList())
+                        {
+                            DAL.ReceiptCustomer pCustomer = new DAL.ReceiptCustomer();
+                            P.PCustomer.toCopy<DAL.ReceiptCustomer>(pCustomer);
+                            pCustomer.SalesReturnId = pc.Id;
+                            pCustomer.Amount = pc.PayAmount;
+                            d.ReceiptCustomers.Add(pCustomer);
+                        }                        
+                    }
+                    else if(P.PayTo == "Supplier")
+                    {
+                        foreach (var pc in P.PPendingList.Where(x => x.PayAmount != 0).ToList())
+                        {
+                            DAL.ReceiptSupplier pSupplier = new DAL.ReceiptSupplier();
+                            P.PSupplier.toCopy<DAL.ReceiptSupplier>(pSupplier);
+                            pSupplier.PurchaseId = pc.Id;
+                            pSupplier.Amount = pc.PayAmount;
+                            d.ReceiptSuppliers.Add(pSupplier);
+                        }
+                    }
+                    else if (P.PayTo == "Staff")
+                    {
+                        DAL.ReceiptStaff pStaff = new DAL.ReceiptStaff();
+                        P.PStaff.toCopy<DAL.ReceiptStaff>(pStaff);
+                        d.ReceiptStaffs.Add(pStaff);
+                    }
+                    else if (P.PayTo == "Bank")
+                    {
+                        DAL.ReceiptBank pBank = new DAL.ReceiptBank();
+                        P.PBank.toCopy<DAL.ReceiptBank>(pBank);
+                        d.ReceiptBanks.Add(pBank);
+                    }
+                    else if (P.PayTo == "Ledger")
+                    {
+                        DAL.ReceiptLedger pLedger = new DAL.ReceiptLedger();
+                        P.PLedger.toCopy<DAL.ReceiptLedger>(pLedger);
+                        d.ReceiptLedgers.Add(pLedger);
+                    }
+                    DB.SaveChanges();
+
+                    LogDetailStore(P, LogDetailType.INSERT);
+                }
+                else
+                {
+                    P.toCopy<DAL.Receipt>(d);
+                    if (P.PayMode == "Cash")
+                    {
+                        DAL.ReceiptCash pCash;
+                        if (d.ReceiptCashes.FirstOrDefault() == null)
+                        {
+                            pCash = new DAL.ReceiptCash();
+                            d.ReceiptCashes.Add(pCash);
+                        }
+                        else
+                        {
+                            pCash = d.ReceiptCashes.FirstOrDefault();
+                        }
+                        P.PCash.toCopy<DAL.ReceiptCash>(pCash);
+
+                        if (d.ReceiptCheques.FirstOrDefault() != null) DB.ReceiptCheques.RemoveRange(d.ReceiptCheques);
+                        if (d.ReceiptOnlines.FirstOrDefault() != null) DB.ReceiptOnlines.RemoveRange(d.ReceiptOnlines);
+                        if (d.ReceiptTTs.FirstOrDefault() != null) DB.ReceiptTTs.RemoveRange(d.ReceiptTTs);
+                    }
+                    else if (P.PayMode == "Cheque")
+                    {
+                        DAL.ReceiptCheque pCheque;
+                        if (d.ReceiptCheques.FirstOrDefault() == null)
+                        {
+                            pCheque = new DAL.ReceiptCheque();
+                            d.ReceiptCheques.Add(pCheque);
+                        }
+                        else
+                        {
+                            pCheque = d.ReceiptCheques.FirstOrDefault();
+                        }
+                        P.PCheque.toCopy<DAL.ReceiptCheque>(pCheque);
+
+                        if (d.ReceiptCashes.FirstOrDefault() != null) DB.ReceiptCashes.RemoveRange(d.ReceiptCashes);
+                        if (d.ReceiptOnlines.FirstOrDefault() != null) DB.ReceiptOnlines.RemoveRange(d.ReceiptOnlines);
+                        if (d.ReceiptTTs.FirstOrDefault() != null) DB.ReceiptTTs.RemoveRange(d.ReceiptTTs);
+                    }
+                    else if (P.PayMode == "Online")
+                    {
+                        DAL.ReceiptOnline pOnline;
+                        if (d.ReceiptCheques.FirstOrDefault() == null)
+                        {
+                            pOnline = new DAL.ReceiptOnline();
+                            d.ReceiptOnlines.Add(pOnline);
+                        }
+                        else
+                        {
+                            pOnline = d.ReceiptOnlines.FirstOrDefault();
+                        }
+                        P.POnline.toCopy<DAL.ReceiptOnline>(pOnline);
+
+                        if (d.ReceiptCashes.FirstOrDefault() != null) DB.ReceiptCashes.RemoveRange(d.ReceiptCashes);
+                        if (d.ReceiptCheques.FirstOrDefault() != null) DB.ReceiptCheques.RemoveRange(d.ReceiptCheques);
+                        if (d.ReceiptTTs.FirstOrDefault() != null) DB.ReceiptTTs.RemoveRange(d.ReceiptTTs);
+                    }
+                    else if (P.PayMode == "TT")
+                    {
+                        DAL.ReceiptTT pTT;
+                        if (d.ReceiptTTs.FirstOrDefault() == null)
+                        {
+                            pTT = new DAL.ReceiptTT();
+                            d.ReceiptTTs.Add(pTT);
+                        }
+                        else
+                        {
+                            pTT = d.ReceiptTTs.FirstOrDefault();
+                        }
+                        P.PTT.toCopy<DAL.ReceiptTT>(pTT);
+
+                        if (d.ReceiptCashes.FirstOrDefault() != null) DB.ReceiptCashes.RemoveRange(d.ReceiptCashes);
+                        if (d.ReceiptCheques.FirstOrDefault() != null) DB.ReceiptCheques.RemoveRange(d.ReceiptCheques);
+                        if (d.ReceiptOnlines.FirstOrDefault() != null) DB.ReceiptOnlines.RemoveRange(d.ReceiptOnlines);
+                    }
+
+                    if (P.PayTo == "Customer")
+                    {
+                        foreach (var pc in P.SRPendingList.Where(x => x.PayAmount != 0).ToList())
+                        {
+                            DAL.ReceiptCustomer pCustomer;
+                            
+                            if (d.ReceiptCustomers.FirstOrDefault() == null)
+                            {
+                                pCustomer = new DAL.ReceiptCustomer();
+                                d.ReceiptCustomers.Add(pCustomer);
+                            }
+                            else
+                            {
+                                pCustomer = d.ReceiptCustomers.Where(x => x.Id == pc.ReceiptCustomerId).FirstOrDefault();
+                                if(pCustomer == null)
+                                {
+                                    pCustomer = new DAL.ReceiptCustomer();
+                                    d.ReceiptCustomers.Add(pCustomer);
+                                }
+                            }
+
+                            P.PCustomer.toCopy<DAL.ReceiptCustomer>(pCustomer);
+                            pCustomer.SalesReturnId = pc.Id;
+                            pCustomer.Amount = pc.PayAmount;
+                            d.ReceiptCustomers.Add(pCustomer);
+                        }
+                        if (d.ReceiptCustomers.FirstOrDefault() != null)
+                        {
+                            var l1 = d.ReceiptCustomers.Where(x => !P.SRPendingList.Where(y=> y.PayAmount.Value!=0).Select(y=> y.ReceiptCustomerId).Contains(x.Id)).ToList();
+                            if (l1 != null)
+                            {
+                                DB.ReceiptCustomers.RemoveRange(l1);
+                            }
+                        }
+                        if (d.ReceiptSuppliers.FirstOrDefault() != null) DB.ReceiptSuppliers.RemoveRange(d.ReceiptSuppliers);
+                        if (d.ReceiptStaffs.FirstOrDefault() != null) DB.ReceiptStaffs.RemoveRange(d.ReceiptStaffs);                        
+                        if (d.ReceiptBanks.FirstOrDefault() != null) DB.ReceiptBanks.RemoveRange(d.ReceiptBanks);
+                        if (d.ReceiptLedgers.FirstOrDefault() != null) DB.ReceiptLedgers.RemoveRange(d.ReceiptLedgers);
+                    }
+                    else if (P.PayTo == "Supplier")
+                    {
+                        foreach (var pc in P.PPendingList.Where(x => x.PayAmount != 0).ToList())
+                        {
+                            DAL.ReceiptSupplier pSupplier;
+
+                            if (d.ReceiptSuppliers.FirstOrDefault() == null)
+                            {
+                                pSupplier = new DAL.ReceiptSupplier();
+                                d.ReceiptSuppliers.Add(pSupplier);
+                            }
+                            else
+                            {
+                                pSupplier = d.ReceiptSuppliers.Where(x => x.Id == pc.ReceiptSupplierId).FirstOrDefault();
+                                if (pSupplier == null)
+                                {
+                                    pSupplier = new DAL.ReceiptSupplier();
+                                    d.ReceiptSuppliers.Add(pSupplier);
+                                }
+                            }
+
+                            P.PSupplier.toCopy<DAL.ReceiptSupplier>(pSupplier);
+                            pSupplier.PurchaseId = pc.Id;
+                            pSupplier.Amount = pc.PayAmount;
+                            d.ReceiptSuppliers.Add(pSupplier);
+                        }
+                        if (d.ReceiptSuppliers.FirstOrDefault() != null)
+                        {
+                            var l1 = d.ReceiptSuppliers.Where(x => !P.PPendingList.Where(y => y.PayAmount.Value != 0).Select(y => y.ReceiptSupplierId).Contains(x.Id)).ToList();
+                            if (l1 != null)
+                            {
+                                DB.ReceiptSuppliers.RemoveRange(l1);
+                            }
+                        }
+                        if (d.ReceiptCustomers.FirstOrDefault() != null) DB.ReceiptCustomers.RemoveRange(d.ReceiptCustomers);
+                        if (d.ReceiptStaffs.FirstOrDefault() != null) DB.ReceiptStaffs.RemoveRange(d.ReceiptStaffs);
+                        if (d.ReceiptBanks.FirstOrDefault() != null) DB.ReceiptBanks.RemoveRange(d.ReceiptBanks);
+                        if (d.ReceiptLedgers.FirstOrDefault() != null) DB.ReceiptLedgers.RemoveRange(d.ReceiptLedgers);
+                    }
+                    else if (P.PayTo == "Staff")
+                    {                        
+
+                        DAL.ReceiptStaff pStaff;
+                        if (d.ReceiptStaffs.FirstOrDefault() == null)
+                        {
+                            pStaff = new DAL.ReceiptStaff();
+                            d.ReceiptStaffs.Add(pStaff);
+                        }
+                        else
+                        {
+                            pStaff = d.ReceiptStaffs.FirstOrDefault();
+                        }
+                        P.PStaff.toCopy<DAL.ReceiptStaff>(pStaff);
+
+                        if (d.ReceiptCustomers.FirstOrDefault() != null) DB.ReceiptCustomers.RemoveRange(d.ReceiptCustomers);
+                        if (d.ReceiptSuppliers.FirstOrDefault() != null) DB.ReceiptSuppliers.RemoveRange(d.ReceiptSuppliers);
+                        if (d.ReceiptBanks.FirstOrDefault() != null) DB.ReceiptBanks.RemoveRange(d.ReceiptBanks);
+                        if (d.ReceiptLedgers.FirstOrDefault() != null) DB.ReceiptLedgers.RemoveRange(d.ReceiptLedgers);
+
+                    }
+                    else if (P.PayTo == "Bank")
+                    {
+                        DAL.ReceiptBank pBank;
+                        if (d.ReceiptBanks.FirstOrDefault() == null)
+                        {
+                            pBank = new DAL.ReceiptBank();
+                            d.ReceiptBanks.Add(pBank);
+                        }
+                        else
+                        {
+                            pBank = d.ReceiptBanks.FirstOrDefault();
+                        }
+                        P.PBank.toCopy<DAL.ReceiptBank>(pBank);
+
+                        if (d.ReceiptCustomers.FirstOrDefault() != null) DB.ReceiptCustomers.RemoveRange(d.ReceiptCustomers);
+                        if (d.ReceiptSuppliers.FirstOrDefault() != null) DB.ReceiptSuppliers.RemoveRange(d.ReceiptSuppliers);
+                        if (d.ReceiptStaffs.FirstOrDefault() != null) DB.ReceiptStaffs.RemoveRange(d.ReceiptStaffs);
+                        if (d.ReceiptLedgers.FirstOrDefault() != null) DB.ReceiptLedgers.RemoveRange(d.ReceiptLedgers);
+
+                    }
+                    else if (P.PayTo == "Ledger")
+                    {
+                        DAL.ReceiptLedger pLedger;
+                        if (d.ReceiptBanks.FirstOrDefault() == null)
+                        {
+                            pLedger = new DAL.ReceiptLedger();
+                            d.ReceiptLedgers.Add(pLedger);
+                        }
+                        else
+                        {
+                            pLedger = d.ReceiptLedgers.FirstOrDefault();
+                        }
+                        P.PLedger.toCopy<DAL.ReceiptLedger>(pLedger);
+
+                        if (d.ReceiptCustomers.FirstOrDefault() != null) DB.ReceiptCustomers.RemoveRange(d.ReceiptCustomers);
+                        if (d.ReceiptSuppliers.FirstOrDefault() != null) DB.ReceiptSuppliers.RemoveRange(d.ReceiptSuppliers);
+                        if (d.ReceiptStaffs.FirstOrDefault() != null) DB.ReceiptStaffs.RemoveRange(d.ReceiptStaffs);
+                        if (d.ReceiptBanks.FirstOrDefault() != null) DB.ReceiptBanks.RemoveRange(d.ReceiptBanks);
+
+                    }
+                    DB.SaveChanges();
+                   
+                    LogDetailStore(P, LogDetailType.UPDATE);
+                }
+
+                return true;
+            }
+            catch (Exception ex) { }
+            return false;
+        }
+
+        public BLL.Receipt Receipt_Find(string SearchText)
+        {
+            BLL.Receipt P = new BLL.Receipt();
+            try
+            {
+
+                DAL.Receipt d = DB.Receipts.Where(x => x.RefNo == SearchText).FirstOrDefault();
+                DB.Entry(d).Reload();
+                if (d != null)
+                {
+
+                    d.toCopy<BLL.Receipt>(P);
+                    #region Account From
+                    if (d.ReceiptCashes.FirstOrDefault() != null)
+                    {
+                        P.PayMode = "Cash";
+                        d.ReceiptCashes.FirstOrDefault().toCopy<BLL.ReceiptCash>(P.PCash);
+                    }
+                    else if(d.ReceiptCheques.FirstOrDefault()!=null)
+                    {
+                        P.PayMode = "Cheque";
+                        d.ReceiptCheques.FirstOrDefault().toCopy<BLL.ReceiptCheque>(P.PCheque);
+                    }
+                    else if (d.ReceiptOnlines.FirstOrDefault() != null)
+                    {
+                        P.PayMode = "Online";
+                        d.ReceiptOnlines.FirstOrDefault().toCopy<BLL.ReceiptOnline>(P.POnline);
+                    }
+                    else if (d.ReceiptTTs.FirstOrDefault() != null)
+                    {
+                        P.PayMode = "TT";
+                        d.ReceiptTTs.FirstOrDefault().toCopy<BLL.ReceiptTT>(P.PTT);
+                    }
+                    #endregion
+
+                    #region Account To
+                    if(d.ReceiptCustomers.FirstOrDefault()!= null)
+                    {
+                        P.PayTo = "Customer";
+                        foreach(var pc in d.ReceiptCustomers)
+                        {
+                            pc.toCopy<BLL.ReceiptCustomer>(P.PCustomer);
+                        }                        
+                    }
+                    else if (d.ReceiptSuppliers.FirstOrDefault() != null)
+                    {
+                        P.PayTo = "Supplier";
+                        foreach (var pc in d.ReceiptSuppliers)
+                        {
+                            pc.toCopy<BLL.ReceiptSupplier>(P.PSupplier);
+                        }
+                    }
+                    else if (d.ReceiptStaffs.FirstOrDefault() != null)
+                    {
+                        P.PayTo = "Staff";
+                        d.ReceiptStaffs.FirstOrDefault().toCopy<BLL.ReceiptSupplier>(P.PSupplier);                        
+                    }
+                    else if (d.ReceiptBanks.FirstOrDefault() != null)
+                    {
+                        P.PayTo = "Bank";
+                        d.ReceiptBanks.FirstOrDefault().toCopy<BLL.ReceiptBank>(P.PBank);
+                    }
+                    else if (d.ReceiptLedgers.FirstOrDefault() != null)
+                    {
+                        P.PayTo = "Ledger";
+                        d.ReceiptLedgers.FirstOrDefault().toCopy<BLL.ReceiptLedger>(P.PLedger);
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception ex) { }
+            return P;
+        }
+
+        public bool Receipt_Delete(long pk)
+        {
+            try
+            {
+                DAL.Receipt d = DB.Receipts.Where(x => x.Id == pk).FirstOrDefault();
+
+                if (d != null)
+                {
+                    BLL.Receipt P = new BLL.Receipt();
+                    d.toCopy<BLL.Receipt>(P);
+
+                    if (d.ReceiptCashes.FirstOrDefault() != null) DB.ReceiptCashes.RemoveRange(d.ReceiptCashes);
+                    if (d.ReceiptCheques.FirstOrDefault() != null) DB.ReceiptCheques.RemoveRange(d.ReceiptCheques);
+                    if (d.ReceiptOnlines.FirstOrDefault() != null) DB.ReceiptOnlines.RemoveRange(d.ReceiptOnlines);
+                    if (d.ReceiptTTs.FirstOrDefault() != null) DB.ReceiptTTs.RemoveRange(d.ReceiptTTs);
+
+                    if (d.ReceiptCustomers.FirstOrDefault() != null) DB.ReceiptCustomers.RemoveRange(d.ReceiptCustomers);
+                    if (d.ReceiptSuppliers.FirstOrDefault() != null) DB.ReceiptSuppliers.RemoveRange(d.ReceiptSuppliers);
+                    if (d.ReceiptStaffs.FirstOrDefault() != null) DB.ReceiptStaffs.RemoveRange(d.ReceiptStaffs);
+                    if (d.ReceiptBanks.FirstOrDefault() != null) DB.ReceiptBanks.RemoveRange(d.ReceiptBanks);
+                    if (d.ReceiptLedgers.FirstOrDefault() != null) DB.ReceiptLedgers.RemoveRange(d.ReceiptLedgers);
+
+                    DB.Receipts.Remove(d);
+                    DB.SaveChanges();
+                    LogDetailStore(P, LogDetailType.DELETE);
+
+                }
+                return true;
+            }
+            catch (Exception ex) { }
+            return false;
+        }
+
+        #endregion

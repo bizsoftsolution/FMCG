@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0d51ab8971e4461907712363a4fa484" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="FMCGDBModel.AccountGroup" Width="1.5" PointX="7.5" PointY="83.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.Bank" Width="1.5" PointX="9.75" PointY="85.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.BankAccountType" Width="1.5" PointX="7.5" PointY="96.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.City" Width="1.5" PointX="5.25" PointY="82.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.CompanyDetail" Width="1.5" PointX="7.5" PointY="88.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.Country" Width="1.5" PointX="0.75" PointY="83.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.CreditLimitType" Width="1.5" PointX="13.5" PointY="79.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.Customer" Width="1.5" PointX="12.75" PointY="82.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.Designation" Width="1.5" PointX="17.75" PointY="106.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.EntityType" Width="1.5" PointX="15.5" PointY="76.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.ErrorLog" Width="1.5" PointX="17.75" PointY="88.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.Gender" Width="1.5" PointX="17.75" PointY="104.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.Journal" Width="1.5" PointX="9.75" PointY="154.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalBank" Width="1.5" PointX="15" PointY="125" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalCash" Width="1.5" PointX="18" PointY="120.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalCheque" Width="1.5" PointX="15" PointY="120.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalCustomer" Width="1.5" PointX="26.25" PointY="117.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalLedger" Width="1.5" PointX="18" PointY="117.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalOnline" Width="1.5" PointX="12" PointY="120.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalStaff" Width="1.5" PointX="22.25" PointY="122.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalSupplier" Width="1.5" PointX="21" PointY="118.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.JournalTT" Width="1.5" PointX="15" PointY="116.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.Ledger" Width="1.5" PointX="15.75" PointY="79.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.LedgerOpening" Width="1.5" PointX="9.75" PointY="131.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.LogDetail" Width="1.5" PointX="21" PointY="100.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.LogDetailType" Width="1.5" PointX="18.75" PointY="109.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.LogMaster" Width="1.5" PointX="15.75" PointY="92.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.Payment" Width="1.5" PointX="9.75" PointY="159" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentBank" Width="1.5" PointX="15" PointY="128.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentCash" Width="1.5" PointX="21" PointY="115.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentCheque" Width="1.5" PointX="18" PointY="123.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentCustomer" Width="1.5" PointX="25.25" PointY="121.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentLedger" Width="1.5" PointX="18" PointY="114.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentOnline" Width="1.5" PointX="12" PointY="124.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentStaff" Width="1.5" PointX="22.25" PointY="126.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentSupplier" Width="1.5" PointX="24" PointY="117.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.PaymentTT" Width="1.5" PointX="12" PointY="128.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.Product" Width="1.5" PointX="15" PointY="85.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.Purchase" Width="1.5" PointX="12.75" PointY="89.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.PurchaseDetail" Width="1.5" PointX="25.5" PointY="90.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.PurchaseOrder" Width="1.5" PointX="9.75" PointY="93.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.PurchaseOrderDetail" Width="1.5" PointX="20.25" PointY="96.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.PurchaseReturn" Width="1.5" PointX="12.75" PointY="95.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.PurchaseReturnDetail" Width="1.5" PointX="27.75" PointY="91" />
+        <EntityTypeShape EntityType="FMCGDBModel.Receipt" Width="1.5" PointX="9.75" PointY="113.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptBank" Width="1.5" PointX="12" PointY="100.75" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptCash" Width="1.5" PointX="18" PointY="100.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptCheque" Width="1.5" PointX="12" PointY="116.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptCustomer" Width="1.5" PointX="23.25" PointY="98.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptLedger" Width="1.5" PointX="18" PointY="97.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptOnline" Width="1.5" PointX="12" PointY="103.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptStaff" Width="1.5" PointX="12" PointY="113.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptSupplier" Width="1.5" PointX="23" PointY="95.125" />
+        <EntityTypeShape EntityType="FMCGDBModel.ReceiptTT" Width="1.5" PointX="15" PointY="102.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.Sale" Width="1.5" PointX="21" PointY="83.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.SalesDetail" Width="1.5" PointX="26.25" PointY="85.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.SalesOrder" Width="1.5" PointX="24" PointY="83.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.SalesOrderDetail" Width="1.5" PointX="29.25" PointY="85.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.SalesReturn" Width="1.5" PointX="23" PointY="89.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.SalesReturnDetail" Width="1.5" PointX="30.5" PointY="89.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.Staff" Width="1.5" PointX="20" PointY="89.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.State" Width="1.5" PointX="3" PointY="83.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.StockGroup" Width="1.5" PointX="9.75" PointY="81.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.Supplier" Width="1.5" PointX="18.75" PointY="81.25" />
+        <EntityTypeShape EntityType="FMCGDBModel.TransactionType" Width="1.5" PointX="18.75" PointY="77.5" />
+        <EntityTypeShape EntityType="FMCGDBModel.UOM" Width="1.5" PointX="12.75" PointY="74.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.UserAccount" Width="1.5" PointX="15.75" PointY="97.875" />
+        <EntityTypeShape EntityType="FMCGDBModel.UserType" Width="1.5" PointX="13.5" PointY="107.625" />
+        <EntityTypeShape EntityType="FMCGDBModel.UserTypeDetail" Width="1.5" PointX="15.75" PointY="109.375" />
+        <EntityTypeShape EntityType="FMCGDBModel.UserTypeFormDetail" Width="1.5" PointX="13.5" PointY="111" />
+        <AssociationConnector Association="FMCGDBModel.FK_AccountGroup_AccountGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Bank_AccountGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Customer_AccountGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Ledger_AccountGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Supplier_AccountGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Bank_BankAccountType" />
+        <AssociationConnector Association="FMCGDBModel.FK_Bank_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Bank_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalBank_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCheque_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalOnline_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalTT_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentBank_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCheque_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentOnline_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentTT_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptBank_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptOnine_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptTT_Bank" />
+        <AssociationConnector Association="FMCGDBModel.FK_City_State" />
+        <AssociationConnector Association="FMCGDBModel.FK_CompanyDetail_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Customer_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Ledger_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Staff_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Supplier_City" />
+        <AssociationConnector Association="FMCGDBModel.FK_Customer_CompanyDetails" />
+        <AssociationConnector Association="FMCGDBModel.FK_ErrorLog_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Journal_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Ledger_CompanyDetails" />
+        <AssociationConnector Association="FMCGDBModel.FK_LedgerOpening_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogMaster_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Payment_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Product_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Purchase_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrder_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturn_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Receipt_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Sale_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrder_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturn_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Staff_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_StockGroup_CompanyDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_Supplier_CompanyDetails" />
+        <AssociationConnector Association="FMCGDBModel.FK_UserAccount_CompanyDetails" />
+        <AssociationConnector Association="FMCGDBModel.FK_State_Country" />
+        <AssociationConnector Association="FMCGDBModel.FK_Customer_CreditLimitType" />
+        <AssociationConnector Association="FMCGDBModel.FK_Ledger_CreditLimitType" />
+        <AssociationConnector Association="FMCGDBModel.FK_Supplier_CreditLimitType" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCustomer_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCustomer_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCustomer_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_Sale_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrder_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturn_Customer" />
+        <AssociationConnector Association="FMCGDBModel.FK_Designation_UserType" />
+        <AssociationConnector Association="FMCGDBModel.FK_Staff_Designation" />
+        <AssociationConnector Association="FMCGDBModel.FK_ErrorLog_EntityType" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogMaster_EntityType" />
+        <AssociationConnector Association="FMCGDBModel.FK_ErrorLog_UserAccount" />
+        <AssociationConnector Association="FMCGDBModel.FK_Staff_Gender" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalBank_JournalBank" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCash_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCheque_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCustomer_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalLedger_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalOnline_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalStaff_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalSupplier_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalTT_Journal" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCash_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalCustomer_SalesReturn" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalLedger_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalStaff_Staff" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalSupplier_Purchase" />
+        <AssociationConnector Association="FMCGDBModel.FK_JournalSupplier_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCash_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentLedger_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCash_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptLedger_Ledger" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogDetail_LogDetailType" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogDetail_LogMaster" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogDetail_UserAccount" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogMaster_CreatedBy" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogMaster_DeletedBy" />
+        <AssociationConnector Association="FMCGDBModel.FK_LogMaster_UpdatedBy" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentBank_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCash_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCheque_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCustomer_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentLedger_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentOnline_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentStaff_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentSupplier_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentTT_Payment" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentCustomer_SalesReturn" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentStaff_Staff" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentSupplier_Purchase" />
+        <AssociationConnector Association="FMCGDBModel.FK_PaymentSupplier_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_Product_StockGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_Product_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseDetails_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrderDetail_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturnDetail_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesDetail_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrderDetail_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturnDetail_Product" />
+        <AssociationConnector Association="FMCGDBModel.FK_Purchase_Purchase" />
+        <AssociationConnector Association="FMCGDBModel.FK_Purchase_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_Purchase_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseDetails_PurchaseDetails" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseDetail_PurchaseOrderDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseDetails_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturnDetail_PurchaseDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrder_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrder_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrderDetail_Purchase" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseOrderDetail_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturn_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturn_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturnDetail_PurchaseReturn" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptSupplier_PurchaseReturn" />
+        <AssociationConnector Association="FMCGDBModel.FK_PurchaseReturnDetail_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptBank_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCash_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCheque_ReceiptCheque" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCustomer_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptLedger_ReceiptLedger" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptOnine_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptStaff_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptSupplier_Receipt" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptTT_ReceiptTT" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptCustomer_Sale" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptStaff_Staff" />
+        <AssociationConnector Association="FMCGDBModel.FK_ReceiptSupplier_Supplier" />
+        <AssociationConnector Association="FMCGDBModel.FK_Sale_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesDetail_Sale" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesDetail_SalesOrderDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesDetail_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturnDetail_SalesDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrder_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrderDetail_SalesOrderDetail" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesOrderDetail_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturn_TransactionType" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturnDetail_SalesReturn" />
+        <AssociationConnector Association="FMCGDBModel.FK_SalesReturnDetail_UOM" />
+        <AssociationConnector Association="FMCGDBModel.FK_Staff_UserAccount" />
+        <AssociationConnector Association="FMCGDBModel.FK_StockGroup_StockGroup" />
+        <AssociationConnector Association="FMCGDBModel.FK_UserAccount_UserType" />
+        <AssociationConnector Association="FMCGDBModel.FK_UserTypeDetail_UserType" />
+        <AssociationConnector Association="FMCGDBModel.FK_UserTypeDetail_UserTypeFormDetail" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

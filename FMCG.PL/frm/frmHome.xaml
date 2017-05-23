@@ -1,0 +1,289 @@
+﻿<Controls:MetroWindow x:Class="FMCG.PL.frm.frmHome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FMCG.PL.frm"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:FMCGMenu="clr-namespace:FMCG.Common;assembly=FMCG.Common"
+        xmlns:Master="clr-namespace:FMCG.PL.frm.Master"
+        xmlns:Transaction="clr-namespace:FMCG.PL.frm.Transaction"
+        xmlns:Report="clr-namespace:FMCG.PL.frm.Report"
+          xmlns:Help="clr-namespace:FMCG.PL.frm.Help"
+                 
+        mc:Ignorable="d"
+        Title="FMCG" Height="600" Width="1100"
+        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" WindowTransitionsEnabled="False" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="/FMCG.PL;component/Images/fmcg_logo.png" >
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                        x:Name="MenuToggleButton" Height="Auto"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- data template used for the dialogs example, defines a View for a ViewModel of type DateTime  -->
+            <DataTemplate DataType="{x:Type system:DateTime}">
+                <StackPanel Margin="16">
+                    <TextBlock>England win the World Cup:</TextBlock>
+                    <TextBlock Margin="0 8 0 0" Text="{Binding }" />
+                    <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
+                    <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+                </StackPanel>
+            </DataTemplate>
+            <Thickness x:Key="mnuItemMargin">30,0,0,0</Thickness>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <materialDesign:DrawerHost Name="dhContent" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}" Margin="0,1,0,-1">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="212">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+
+                    <StackPanel Orientation="Vertical">
+
+                        <ListBox SelectedIndex="0" PreviewMouseLeftButtonUp="ListBox_PreviewMouseLeftButtonUp">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="FMCGMenu:FMCGMenuItem">
+                                    <TextBlock Text="{Binding MenuName}" Margin="32 0 32 0" FontSize="16"  />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                            <FMCGMenu:FMCGMenuItem MenuName="Home">
+                                <FMCGMenu:FMCGMenuItem.Content>
+                                    <local:frmWelcome/>
+                                </FMCGMenu:FMCGMenuItem.Content>
+                            </FMCGMenu:FMCGMenuItem>
+                        </ListBox>
+
+
+                        <Expander Header="Master" FontWeight="Bold" FontSize="16">
+                            <ListBox SelectedIndex="0" PreviewMouseLeftButtonUp="ListBox_PreviewMouseLeftButtonUp">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="FMCGMenu:FMCGMenuItem">
+                                        <TextBlock Text="{Binding MenuName}" Margin="32 0 32 0" FontSize="16"  />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Company Setting">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmCompanySetting/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Staff" FormName ="Staff">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmStaff/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Customer" FormName ="Customer">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmCustomer/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Supplier" FormName ="Supplier">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmSupplier/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Bank" FormName ="Bank">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmBank/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Account Group" FormName ="AccountGroup">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmAccountGroup/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Ledger" FormName="Ledger">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmLedger/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="StockGroup" FormName="StockGroup">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmStockGroup/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="UnitsOfMeasurement" FormName ="UOM">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmUOM/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Products" FormName="Products">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmProduct/>
+                                    </FMCGMenu:FMCGMenuItem.Content> 
+                                </FMCGMenu:FMCGMenuItem>
+                                <!--<FMCGMenu:FMCGMenuItem MenuName="Ledger Opening" FormName="Products">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Master:frmLedgerOpening/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>-->
+
+                            </ListBox>
+                        </Expander>
+
+                        <Expander Header="Transaction" FontWeight="Bold" FontSize="16">
+
+                            <ListBox SelectedIndex="0" PreviewMouseLeftButtonUp="ListBox_PreviewMouseLeftButtonUp">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="BizMenu:BizMenuItem">
+                                        <TextBlock Text="{Binding MenuName}" Margin="32 0 32 0" FontSize="16"  />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Purchase Order" FormName="PurchaseOrder">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmPurchaseOrder/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Sales Order" FormName="SalesOrder">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmSalesOrder/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Purchase" FormName="Purchase">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmPurchase/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Sales" FormName="Sales">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmSale/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Purchase Return" FormName="PurchaseReturn">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmPurchaseReturn/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+
+                                
+                                <FMCGMenu:FMCGMenuItem MenuName="Sales Return" FormName="SalesReturn">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmSalesReturn/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Payment" FormName="Payment">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmPayment/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Receipt" FormName="Receipt">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmReceipt/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <!--<FMCGMenu:FMCGMenuItem MenuName="Journal" FormName="Journal">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmJournal/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Bank Reconcilation" FormName="Bank Reconcilation">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Transaction:frmBankReconcilation/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>-->
+                            </ListBox>
+
+                        </Expander>
+
+                        <Expander Header="Report" FontWeight="Bold" FontSize="16">
+                            <ListBox SelectedIndex="0" PreviewMouseLeftButtonUp="ListBox_PreviewMouseLeftButtonUp">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="BizMenu:BizMenuItem">
+                                        <TextBlock Text="{Binding MenuName}" Margin="32 0 32 0" FontSize="16"  />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Stock Report">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmStockReport/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Re-Order Level Report">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmReOrderLevel />
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Payable Report">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmPayableReport/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Receivable Report">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmReceivableReport/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+
+                                <!--<FMCGMenu:FMCGMenuItem MenuName="Trial Balance">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmTrialBalance/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+
+                                <FMCGMenu:FMCGMenuItem MenuName="Balance Sheet">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmBalanceSheet/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Payment_Receipt">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmPaymentReceipt/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="Profit_Loss">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmProfitLoss/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>
+                                <FMCGMenu:FMCGMenuItem MenuName="General Ledger">
+                                    <FMCGMenu:FMCGMenuItem.Content>
+                                        <Report:frmGeneralLedger/>
+                                    </FMCGMenu:FMCGMenuItem.Content>
+                                </FMCGMenu:FMCGMenuItem>-->
+
+                            </ListBox>
+                        </Expander>
+                      
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <Grid>
+                    <ContentControl Margin="16" Name="ccContent"/>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+
+</Controls:MetroWindow>
